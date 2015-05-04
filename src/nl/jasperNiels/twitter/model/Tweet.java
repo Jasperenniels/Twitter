@@ -1,5 +1,7 @@
 package nl.jasperNiels.twitter.model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -12,14 +14,26 @@ import java.util.Observer;
  */
 public class Tweet extends Observable implements Observer {
 
-	private Sender sender;
+	private User sender;
+	private Date date;
+	private Content content;
+	private ArrayList<Tweet> retweets;	// optioneel
+	private Place place;				// optioneel
 
-	public Tweet(Sender sender) {
+	public Tweet(User sender, Content content) { 
 		this.sender = sender;
+		this.date = new Date(); // set de date naar <<create>> datum
+		this.content = content;
+		retweets = new ArrayList<Tweet>();
 		sender.addObserver(this);
+		checkForPlace();
 	}
 	
-	public Sender getSender() {
+	private void checkForPlace() {
+		// Als er in de content een place zit, set die.
+	}
+
+	public User getSender() {
 		return sender;
 	}
 	

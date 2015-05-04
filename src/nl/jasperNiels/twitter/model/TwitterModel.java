@@ -10,12 +10,12 @@ public class TwitterModel extends Observable implements Observer {
 	
 	public TwitterModel() {
 		tweets = new ArrayList<>();
-		createTweet(new Sender("Jasper", "van Lierop"));  //Hardcoded example;
-		createTweet(new Sender("Niels Jan", "van de Pol"));  //Hardcoded example
+		createTweet(new User("Jasper", "van Lierop"), new Content());  //Hardcoded example;
+		createTweet(new User("Niels Jan", "van de Pol"), new Content());  //Hardcoded example
 	}
 	
-	private void createTweet(Sender sender) {
-		Tweet newTweet = new Tweet(sender);
+	private void createTweet(User sender, Content content) {
+		Tweet newTweet = new Tweet(sender, content);
 		newTweet.addObserver(this);
 		tweets.add(newTweet);
 	}
