@@ -1,34 +1,65 @@
 package nl.jasperNiels.twitter;
 
+import nl.jasperNiels.twitter.model.TwitterModel;
+import nl.jasperNiels.twitter.view.TwitterAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
+	private ListView lvTwitter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		
+		TwitterModel model = ((TwitterApplication) getApplication()).getModel();
+		
+		lvTwitter = (ListView) findViewById(R.id.lvTwitter);
+		TwitterAdapter adapter = new TwitterAdapter(this, model.getTweets());
+		lvTwitter.setAdapter(adapter);
+		model.addObserver(adapter);
 	}
 }
+
+
+/**  
+ 
+// Reads an asset file and returns a string with the full contents.
+//
+// @param filename  The filename of the file to read.
+// @return          The contents of the file.
+// @throws IOException  If file could not be found or not read.
+
+
+private String readAssetIntoString(String filename) throws IOException {
+	BufferedReader br = null;
+	StringBuilder sb = new StringBuilder();
+
+	String line;
+	try {
+		InputStream is = getAssets().open(filename, AssetManager.ACCESS_BUFFER);
+		br = new BufferedReader(new InputStreamReader(is));
+		while ((line = br.readLine()) != null) {
+			sb.append(line);
+		}
+	} catch (IOException e) {
+		e.printStackTrace();
+       throw e;
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	return sb.toString();		
+}
+
+*/
