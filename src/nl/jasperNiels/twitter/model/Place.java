@@ -1,5 +1,7 @@
 package nl.jasperNiels.twitter.model;
 
-public class Place {
+import java.util.Observable;
+
+public class Place extends Observable {
 
 }

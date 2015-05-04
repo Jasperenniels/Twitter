@@ -26,6 +26,7 @@ public class Tweet extends Observable implements Observer {
 		this.content = content;
 		retweets = new ArrayList<Tweet>();
 		sender.addObserver(this);
+		content.addObserver(this);
 		checkForPlace();
 	}
 	
@@ -35,6 +36,14 @@ public class Tweet extends Observable implements Observer {
 
 	public User getSender() {
 		return sender;
+	}
+	
+	public void addRetweet(Tweet retweet) {
+		retweets.add(retweet);
+	}
+	
+	public int getNumberOfRetweets() {
+		return retweets.size();
 	}
 	
 	

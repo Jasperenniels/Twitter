@@ -1,6 +1,8 @@
 package nl.jasperNiels.twitter.model;
 
-public class Content {
+import java.util.Observable;
+
+public class Content extends Observable {
 
 	// Text, links
 	
