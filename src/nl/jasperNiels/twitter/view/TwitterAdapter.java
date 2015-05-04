@@ -1,5 +1,6 @@
 package nl.jasperNiels.twitter.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -22,7 +23,7 @@ public class TwitterAdapter extends ArrayAdapter implements Observer {
 		TextView tvName;
 	}
 
-	public TwitterAdapter(Context context, List objects) {
+	public TwitterAdapter(Context context, ArrayList<Tweet> objects) {
 		super(context, 0, objects);
 	}
 
