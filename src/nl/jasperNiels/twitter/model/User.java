@@ -6,12 +6,6 @@ public class User extends Observable {
 	private String firstname;
 	private String lastname;
 	private String username;
-//	private String createdAt;
-//	private Boolean defaultProfile;
-//	private Boolean defaultImage;
-//	private String description;
-//	private Entity entities;
-//	etc
 	
 	
 	public User(String firstname, String lastname, String username) {

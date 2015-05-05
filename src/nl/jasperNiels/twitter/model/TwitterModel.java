@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Model that contains all tweets and listens to changes to them.
+ * Tweets are created here aswell
+ * @author enjee
+ */
 public class TwitterModel extends Observable implements Observer {
 	
 	private ArrayList<Tweet> tweets;
