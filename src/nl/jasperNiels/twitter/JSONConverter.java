@@ -8,6 +8,11 @@ import nl.jasperNiels.twitter.model.Content;
 import nl.jasperNiels.twitter.model.Tweet;
 import nl.jasperNiels.twitter.model.User;
 
+/**
+ * Converter die een String (regel) met JSON twitter objecten uit kan lezen en tweets terug kan geven.
+ * 
+ * @author enjee
+ */
 public class JSONConverter {
 
 	/* The line of JSON which is passed to this converter */
