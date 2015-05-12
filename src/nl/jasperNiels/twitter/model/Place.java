@@ -4,8 +4,11 @@ import java.util.Observable;
 
 public class Place extends Observable {
 
-	private int id;
-	private String coordinates;
+	private String id;
 	private String name;
+	private String country;
+	private String country_code;
+	private String full_name;
+	private String place_type;
 	
 }

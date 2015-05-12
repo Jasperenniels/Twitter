@@ -1,5 +1,6 @@
 package nl.jasperNiels.twitter.model;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
@@ -14,11 +15,14 @@ import java.util.Observer;
  */
 public class Tweet extends Observable implements Observer {
 
+	private String id_str;
 	private User sender; //name
 	private String date; //created_at Thu Aug 09 12:23:42 +0000 2012
 	private Content content; // text
 	private ArrayList<Tweet> retweets;	// optioneel
 	private Place place;				// optioneel
+	private ArrayList<URL> urls;		// optioneel
+	// Links, hashtags, id_str, etc.
 
 	public Tweet(User sender, Content content, String date) { 
 		this.sender = sender;

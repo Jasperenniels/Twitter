@@ -6,6 +6,8 @@ public class User extends Observable {
 	private String id;
 	private String name;
 	private String screen_name;
+	private String location;		// optioneel
+	private String description;	
 	
 	
 	public User(String id, String name, String screen_name) {
