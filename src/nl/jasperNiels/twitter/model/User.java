@@ -14,9 +14,12 @@ public class User extends Observable {
 		this.screen_name = screen_name;
 	}
 	
-	@Override
-	public String toString() {
-		return screen_name + " (" + id + ")";
+	public String getName() {
+		return name;
+	}
+	
+	public String getScreenName() {
+		return screen_name;
 	}
 	
 }
