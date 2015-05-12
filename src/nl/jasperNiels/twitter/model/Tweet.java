@@ -14,19 +14,19 @@ import java.util.Observer;
  */
 public class Tweet extends Observable implements Observer {
 
-	private User sender;
-	private Date date;
-	private Content content;
+	private User sender; //name
+	private String date; //created_at Thu Aug 09 12:23:42 +0000 2012
+	private Content content; // text
 	private ArrayList<Tweet> retweets;	// optioneel
 	private Place place;				// optioneel
 
-	public Tweet(User sender, Content content) { 
+	public Tweet(User sender, Content content, String date) { 
 		this.sender = sender;
-		this.date = new Date(); // set de date naar <<create>> datum
+		this.date = date; // set de date naar <<create>> datum
 		this.content = content;
 		retweets = new ArrayList<Tweet>();
 		sender.addObserver(this);
-		content.addObserver(this);
+//		content.addObserver(this); doen we nog even niks mee
 		checkForPlace();
 	}
 	
@@ -38,6 +38,10 @@ public class Tweet extends Observable implements Observer {
 		return sender;
 	}
 	
+	public Content getContent() {
+		return content;
+	}
+	
 	public void addRetweet(Tweet retweet) {
 		retweets.add(retweet);
 	}
@@ -45,7 +49,10 @@ public class Tweet extends Observable implements Observer {
 	public int getNumberOfRetweets() {
 		return retweets.size();
 	}
-	
+
+	public String getDate() {
+		return date;
+	}
 	
 	@Override
 	public void update(Observable observable, Object data) {

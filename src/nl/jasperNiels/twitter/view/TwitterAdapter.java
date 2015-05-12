@@ -20,6 +20,8 @@ public class TwitterAdapter extends ArrayAdapter implements Observer {
 
 	static class ViewHolder {
 		TextView tvName;
+		TextView tvContent;
+		TextView tvDate;
 	}
 
 	public TwitterAdapter(Context context, ArrayList<Tweet> objects) {
@@ -34,6 +36,8 @@ public class TwitterAdapter extends ArrayAdapter implements Observer {
 
 			holder = new ViewHolder();
 			holder.tvName = (TextView) convertView.findViewById(R.id.tvName);
+			holder.tvContent = (TextView) convertView.findViewById(R.id.tvContent);
+			holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
 
 			convertView.setTag(holder);
 		} else {
@@ -41,7 +45,10 @@ public class TwitterAdapter extends ArrayAdapter implements Observer {
 		}
 		
 		selectedTweet = (Tweet) getItem(position);
-		holder.tvName.setText(selectedTweet.getSender().getFullName());
+		holder.tvName.setText(selectedTweet.getSender().toString());
+		holder.tvContent.setText(selectedTweet.getContent().getText());
+		holder.tvDate.setText(selectedTweet.getDate());
+		
 		
 		return convertView;
 	}

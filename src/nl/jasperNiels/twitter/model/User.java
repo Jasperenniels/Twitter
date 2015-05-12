@@ -3,19 +3,20 @@ package nl.jasperNiels.twitter.model;
 import java.util.Observable;
 
 public class User extends Observable {
-	private String firstname;
-	private String lastname;
-	private String username;
+	private String id;
+	private String name;
+	private String screen_name;
 	
 	
-	public User(String firstname, String lastname, String username) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
+	public User(String id, String name, String screen_name) {
+		this.id = id;
+		this.name = name;
+		this.screen_name = screen_name;
 	}
 	
-	public String getFullName() {
-		return firstname + " " + lastname + " @" + username;
+	@Override
+	public String toString() {
+		return screen_name + " (" + id + ")";
 	}
 	
 }
