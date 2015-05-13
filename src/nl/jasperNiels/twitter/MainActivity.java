@@ -6,24 +6,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import nl.jasperNiels.twitter.model.Content;
 import nl.jasperNiels.twitter.model.Tweet;
 import nl.jasperNiels.twitter.model.TwitterModel;
+import nl.jasperNiels.twitter.model.User;
 import nl.jasperNiels.twitter.view.TwitterAdapter;
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
 	private ListView lvTwitter;
+	private TwitterModel model;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		TwitterModel model = ((TwitterApplication) getApplication()).getModel();
+		model = ((TwitterApplication) getApplication()).getModel();
 
 		lvTwitter = (ListView) findViewById(R.id.lvTwitter);
 		TwitterAdapter adapter = new TwitterAdapter(this, model.getTweets());
@@ -32,14 +40,43 @@ public class MainActivity extends Activity {
 		
 		try {
 			String jsonLine = readAssetIntoString("tweets.json");
-			JSONConverter converter = new JSONConverter(jsonLine);
-			for (Tweet t : converter.constructTweets()) {
-				model.addTweet(t);
+			try {
+				JSONObject jsonObject = new JSONObject(jsonLine);
+				JSONArray jsonArray = jsonObject.getJSONArray("statuses");
+				
+				Log.w("Begin loop", "array length: " + jsonArray.length());
+				for (int i = 0 ; i < jsonArray.length() ; i++) {
+					 
+					JSONObject tweetObject = (JSONObject) jsonArray.get(i); 
+					createTweet(tweetObject);
+					
+				}
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void createTweet(JSONObject tweetObject) throws JSONException {
+		// tweet shizzle
+		String id_str = tweetObject.getString("id_str");
+		String date = tweetObject.getString("created_at");
+		String text =  tweetObject.getString("text");
+		
+		JSONObject userObject = tweetObject.getJSONObject("user");
+
+		// user gebeurens
+		String name = userObject.getString("name");
+		String user_id = userObject.getString("id_str");
+		String screen_name = userObject.getString("screen_name");
+		
+		Tweet newTweet = new Tweet(id_str, new User(user_id, name, screen_name), new Content(text), date);
+		model.addTweet(newTweet);
+		
 	}
 
 	// Reads an asset file and returns a string with the full contents.

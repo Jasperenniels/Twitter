@@ -50,8 +50,7 @@ public class TwitterAdapter extends ArrayAdapter implements Observer {
 		String year = selectedTweet.getDate().substring(27,30);
 		holder.tvName.setText(selectedTweet.getSender().getName());
 		holder.tvScreenName.setText(" @" + selectedTweet.getSender().getScreenName() + " - " + day + "/" + month + "/" + year);
-		holder.tvContent.setText(selectedTweet.getContent().getText());
-		
+		holder.tvContent.setText(selectedTweet.getContent().getText());	
 		
 		return convertView;
 	}

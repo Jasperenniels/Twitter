@@ -15,16 +15,15 @@ import java.util.Observer;
  */
 public class Tweet extends Observable implements Observer {
 
-	private String id_str;
+	private String id_str; //
 	private User sender; //name
 	private String date; //created_at Thu Aug 09 12:23:42 +0000 2012
 	private Content content; // text
 	private ArrayList<Tweet> retweets;	// optioneel
 	private Place place;				// optioneel
 	private ArrayList<URL> urls;		// optioneel
-	// Links, hashtags, id_str, etc.
 
-	public Tweet(User sender, Content content, String date) { 
+	public Tweet(String id_str, User sender, Content content, String date) { 
 		this.sender = sender;
 		this.date = date; // set de date naar <<create>> datum
 		this.content = content;
