@@ -2,15 +2,17 @@ package nl.jasperNiels.twitter.model;
 
 import java.util.Observable;
 
+import android.text.SpannableString;
+
 public class Content extends Observable {
 
-	private String text;
+	private SpannableString text;
 	
-	public Content(String text) {
+	public Content(SpannableString text) {
 		this.text = text;
 	}
 	
-	public String getText() {
+	public SpannableString getText() {
 		return text;
 	}
 	

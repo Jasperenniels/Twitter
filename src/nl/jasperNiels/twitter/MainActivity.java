@@ -18,6 +18,7 @@ import nl.jasperNiels.twitter.view.TwitterAdapter;
 import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.SpannableString;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -65,7 +66,8 @@ public class MainActivity extends Activity {
 		// tweet shizzle
 		String id_str = tweetObject.getString("id_str");
 		String date = tweetObject.getString("created_at");
-		String text =  tweetObject.getString("text");
+		String textRaw =  tweetObject.getString("text");
+		SpannableString text = null;
 		
 		JSONObject userObject = tweetObject.getJSONObject("user");
 
